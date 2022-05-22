@@ -2,6 +2,7 @@ use std::fmt::{Display, Formatter};
 
 pub trait TEvent {
     fn get_event(&self) -> Event;
+    fn try_get_event(&self) -> Option<Event>;
 }
 
 #[derive(Debug, Clone, Copy)]

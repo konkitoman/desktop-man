@@ -22,9 +22,9 @@ impl TInput for Desktop {
         }
     }
 
-    fn grab_button(&self, button: u32, modifiers: u32, mask: u32) {
+    fn grab_button(&self, button: u32, modifiers: u32) {
         match self.session {
-            Session::X11(ref x11) => x11.grab_button(button, modifiers, mask),
+            Session::X11(ref x11) => x11.grab_button(button, modifiers),
         }
     }
 
@@ -45,6 +45,12 @@ impl TEvent for Desktop {
     fn get_event(&self) -> Event {
         match self.session {
             Session::X11(ref x11) => x11.get_event(),
+        }
+    }
+
+    fn try_get_event(&self) -> Option<Event> {
+        match self.session {
+            Session::X11(ref x11) => x11.try_get_event(),
         }
     }
 }
